@@ -10,19 +10,19 @@ I created this project to showcase my skills in full-stack web development, real
 -  **Frontend**: https://collab-kanban-board.vercel.app/  
 -  **Backend API**: https://collab-kanban-board.onrender.com
 -  **Demo Video**: https://your-demo-video-link.com  
--  **Logic Document**: [Logic_Document.md](./Logic_Document.md)
+-  **Logic Document**: https://github.com/sania102/collab-kanban-board/blob/main/Logic_Document.md
 
 ---
 
 ##  What This App Can Do
 
-✅ Register/Login securely (JWT Auth)  
-✅ Realtime task collaboration using Socket.IO  
-✅ Create, drag & drop tasks in Kanban-style columns  
-✅ Activity Log panel (tracks who did what and when)  
-✅ “Smart Assign” distributes tasks fairly among users  
-✅ Clean, professional UI with animation effects  
-✅ Conflict-safe task updates   
+ Register/Login securely (JWT Auth)  
+ Realtime task collaboration using Socket.IO  
+ Create, drag & drop tasks in Kanban-style columns  
+ Activity Log panel (tracks who did what and when)  
+ “Smart Assign” distributes tasks fairly among users  
+ Clean, professional UI with animation effects  
+ Conflict-safe task updates   
 
 
 
