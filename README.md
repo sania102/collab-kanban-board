@@ -7,8 +7,8 @@ I created this project to showcase my skills in full-stack web development, real
 
 ##  Live Demo
 
--  **Frontend**: https://your-frontend.vercel.app  
--  **Backend API**: https://your-backend.onrender.com  
+-  **Frontend**: https://collab-kanban-board.vercel.app/  
+-  **Backend API**: https://collab-kanban-board.onrender.com
 -  **Demo Video**: https://your-demo-video-link.com  
 -  **Logic Document**: [Logic_Document.md](./Logic_Document.md)
 
