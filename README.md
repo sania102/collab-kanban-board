@@ -9,7 +9,7 @@ I created this project to showcase my skills in full-stack web development, real
 
 -  **Frontend**: https://collab-kanban-board.vercel.app/  
 -  **Backend API**: https://collab-kanban-board.onrender.com
--  **Demo Video**: https://your-demo-video-link.com  
+-  **Demo Video**: https://drive.google.com/file/d/1spcRyn0agcHhkwl6ED2wfKSvzVbGsz5d/view?usp=sharing
 -  **Logic Document**: https://github.com/sania102/collab-kanban-board/blob/main/Logic_Document.md
 
 ---
