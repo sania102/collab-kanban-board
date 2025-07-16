@@ -10,20 +10,15 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "https://collab-kanban-board.onrender.com/api/auth/login",
-        {
-          email,
-          password
-        }
-      );
+      const res = await axios.post("https://collab-kanban-board.onrender.com/api/auth/login", {
+        email,
+        password // ❌ do NOT add comma here!
+      });
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
-      console.log("✅ Logged in:", res.data.user);
       navigate("/");
     } catch (err) {
-      console.error("❌ Login error:", err.message);
-      alert("Login failed. Please check your credentials.");
+      alert("Login failed");
     }
   };
 
@@ -46,13 +41,8 @@ export default function Login() {
       />
       <button type="submit">Login</button>
       <p>
-        Don’t have an account?{" "}
-        <Link to="/register">
-          Register here
-        </Link>
+        Don’t have an account? <Link to="/register">Register here</Link>
       </p>
     </form>
   );
 }
-
-
