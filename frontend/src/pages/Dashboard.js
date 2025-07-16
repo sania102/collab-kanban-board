@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { io } from "socket.io-client";
 
+// Use your deployed backend URL
 const BACKEND_URL = "https://collab-kanban-board.onrender.com";
 const socket = io(BACKEND_URL);
 
@@ -23,16 +24,16 @@ export default function Dashboard() {
     try {
       const [taskRes, logRes] = await Promise.all([
         axios.get(`${BACKEND_URL}/api/tasks`, {
-          headers: { Authorization: `Bearer ${token}` }
+          headers: { Authorization: `Bearer ${token}` },
         }),
-        axios.get(`${BACKEND_URL}/api/tasks/logs/recent`, {
-          headers: { Authorization: `Bearer ${token}` }
-        })
+        axios.get(`${BACKEND_URL}/api/tasks/logs`, {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
       ]);
       setTasks(taskRes.data);
       setLogs(logRes.data);
     } catch (err) {
-      alert("❌ Error fetching tasks or logs.");
+      alert("Error fetching tasks or logs.");
     }
   };
 
@@ -48,7 +49,7 @@ export default function Dashboard() {
   };
 
   const createTask = async (assignSmart = false) => {
-    if (!title.trim()) return alert("Please enter a task title");
+    if (!title.trim()) return alert("Title required");
 
     let assignedTo = user._id;
 
@@ -72,7 +73,8 @@ export default function Dashboard() {
       setDescription("");
       fetchData();
     } catch (err) {
-      alert("❌ Task creation failed");
+      console.error("Create task failed:", err.response?.data || err.message);
+      alert("Task creation failed");
     }
   };
 
@@ -85,17 +87,17 @@ export default function Dashboard() {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       fetchData();
-    } catch (err) {
-      alert("❌ Task move failed");
+    } catch {
+      alert("Move failed");
     }
   };
 
   const grouped = {
     Todo: [],
     "In Progress": [],
-    Done: []
+    Done: [],
   };
-  tasks.forEach((task) => grouped[task.status]?.push(task));
+  tasks.forEach((t) => grouped[t.status]?.push(t));
 
   return (
     <div className="container">
@@ -108,16 +110,8 @@ export default function Dashboard() {
 
       <h3>Create New Task</h3>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: 20 }}>
-        <input
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <input
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+        <input placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+        <input placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
         <select value={priority} onChange={(e) => setPriority(e.target.value)}>
           <option>Low</option>
           <option>Medium</option>
@@ -151,16 +145,9 @@ export default function Dashboard() {
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
-                          style={{
-                            ...provided.draggableProps.style,
-                            background: "#f4f4f4",
-                            padding: 10,
-                            marginBottom: 10,
-                            borderRadius: 8,
-                            boxShadow: "0 2px 4px rgba(0,0,0,0.1)"
-                          }}
+                          style={provided.draggableProps.style}
                         >
-                          <strong>{task.title}</strong>
+                          <b>{task.title}</b>
                           <p>{task.description}</p>
                           <small>Priority: {task.priority}</small>
                         </div>
@@ -174,7 +161,7 @@ export default function Dashboard() {
           ))}
         </DragDropContext>
 
-        <div style={{ width: "25%", paddingLeft: 20 }}>
+        <div style={{ width: "25%" }}>
           <h4>Activity Log</h4>
           <div className="activity-log">
             {logs.map((log) => (
