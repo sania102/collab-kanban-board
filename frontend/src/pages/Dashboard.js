@@ -6,7 +6,7 @@ import { io } from "socket.io-client";
 
 // Use your deployed backend URL
 const BACKEND_URL = "https://collab-kanban-board.onrender.com";
-const socket = io(BACKEND_URL);
+const socket = io("https://collab-kanban-board.onrender.com");
 
 export default function Dashboard() {
   const [tasks, setTasks] = useState([]);
