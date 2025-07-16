@@ -11,19 +11,15 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
-        "https://collab-kanban-board.onrender.com/api/auth/register",
-        {
-          name,
-          email,
-          password
-        }
-      );
-      alert("✅ Registered successfully!");
+      await axios.post("https://collab-kanban-board.onrender.com/api/auth/register", {
+        name,
+        email,
+        password // ❌ do NOT add comma here!
+      });
+      alert("Registered successfully!");
       navigate("/login");
     } catch (err) {
-      console.error("❌ Registration error:", err.message);
-      alert("Registration failed. Email may already exist.");
+      alert("Registration failed");
     }
   };
 
@@ -52,11 +48,9 @@ export default function Register() {
       />
       <button type="submit">Register</button>
       <p>
-        Already have an account?{" "}
-        <Link to="/login">
-          Login here
-        </Link>
+        Already have an account? <Link to="/login">Login here</Link>
       </p>
     </form>
   );
 }
+
