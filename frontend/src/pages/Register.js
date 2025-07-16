@@ -14,7 +14,7 @@ export default function Register() {
       await axios.post("https://collab-kanban-board.onrender.com/api/auth/register", {
         name,
         email,
-        password // ❌ do NOT add comma here!
+        password
       });
       alert("Registered successfully!");
       navigate("/login");
@@ -53,4 +53,3 @@ export default function Register() {
     </form>
   );
 }
-
